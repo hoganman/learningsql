@@ -18,7 +18,9 @@ class Department(Base):
     name: Mapped[str] = mapped_column(String(20), nullable=False)
     """Name of the department, non-nullable"""
 
-    dept_employees: Mapped[List["Employee"]] = relationship("Employee", back_populates="employee_dept")
+    dept_employees: Mapped[List["Employee"]] = relationship(
+        "Employee", back_populates="employee_dept"
+    )
     """Relationship that lists all employees to the department"""
 
     def __repr__(self) -> str:

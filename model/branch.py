@@ -9,6 +9,7 @@ from .base import Base
 
 class Branch(Base):
     """A department branch"""
+
     __tablename__: Final[str] = "branch"
 
     branch_id: Mapped[int] = mapped_column(primary_key=True)
@@ -29,15 +30,20 @@ class Branch(Base):
     zip: Mapped[Optional[str]] = mapped_column(String(12), nullable=True)
     """ZIP code of the branch, nullable"""
 
-    branch_employees: Mapped[List["Employee"]] = relationship("Employee", back_populates="employee_branch")
+    branch_employees: Mapped[List["Employee"]] = relationship(
+        "Employee", back_populates="employee_branch"
+    )
     """Relationship that lists all the employee with the branch"""
 
     def __repr__(self) -> str:
-        return "Branch(branch_id=%d, name=%s, address=%s, city=%s, state=%s, zip=%s)" % (
-            self.branch_id,
-            self.name,
-            self.address if self.address is not None else "",
-            self.city if self.city is not None else "",
-            self.state if self.state is not None else "",
-            self.zip if self.zip is not None else "",
+        return (
+            "Branch(branch_id=%d, name=%s, address=%s, city=%s, state=%s, zip=%s)"
+            % (
+                self.branch_id,
+                self.name,
+                self.address if self.address is not None else "",
+                self.city if self.city is not None else "",
+                self.state if self.state is not None else "",
+                self.zip if self.zip is not None else "",
+            )
         )

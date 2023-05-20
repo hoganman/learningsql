@@ -10,18 +10,18 @@ from .base import Base
 
 class Officer(Base):
     """An officer in the bank
-    create table officer
- (officer_id smallint unsigned not null auto_increment,
-  cust_id integer unsigned not null,
-  fname varchar(30) not null,
-  lname varchar(30) not null,
-  title varchar(20),
-  start_date date not null,
-  end_date date,
-  constraint fk_o_cust_id foreign key (cust_id)
-    references business (cust_id),
-  constraint pk_officer primary key (officer_id)
- );
+       create table officer
+    (officer_id smallint unsigned not null auto_increment,
+     cust_id integer unsigned not null,
+     fname varchar(30) not null,
+     lname varchar(30) not null,
+     title varchar(20),
+     start_date date not null,
+     end_date date,
+     constraint fk_o_cust_id foreign key (cust_id)
+       references business (cust_id),
+     constraint pk_officer primary key (officer_id)
+    );
     """
 
     __tablename__: Final[str] = "officer"
@@ -57,6 +57,6 @@ class Officer(Base):
                 self.lname,
                 self.title if self.title is not None else "",
                 self.start_date.isoformat(),
-                self.end_date.isoformat() if self.end_date is not None else ""
+                self.end_date.isoformat() if self.end_date is not None else "",
             )
         )

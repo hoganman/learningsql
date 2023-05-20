@@ -17,7 +17,9 @@ class Product(Base):
 
     name: Mapped[str] = mapped_column(String(50), nullable=False)
 
-    product_type_cd: Mapped[str] = mapped_column(ForeignKey("product_type.product_type_cd"), nullable=False)
+    product_type_cd: Mapped[str] = mapped_column(
+        ForeignKey("product_type.product_type_cd"), nullable=False
+    )
 
     date_offered: Mapped[date] = mapped_column(Date, nullable=True)
     """Offering date of the product, nullable"""

@@ -12,6 +12,7 @@ mysql-connector-python = "^8.0.33"
 black = "^23.3.0"
 jupyter = "^1.0.0"
 python-dotenv = "^1.0.0"
+pandas = "^2.0.1"
 
 
 [build-system]

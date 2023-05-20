@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "learningsql"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.0"
+SQLAlchemy = "^2.0.14"
+mysql-connector-python = "^8.0.33"
+black = "^23.3.0"
+jupyter = "^1.0.0"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -69,10 +69,14 @@ class Account(Base):
             self.cust_id,
             self.open_date.isoformat(),
             self.close_date.isoformat() if self.close_date is not None else "",
-            self.last_activity_date.isoformat() if self.last_activity_date is not None else "",
+            self.last_activity_date.isoformat()
+            if self.last_activity_date is not None
+            else "",
             self.status if self.status is not None else "",
             str(self.open_emp_id) if self.open_emp_id is not None else "",
             str(self.open_branch_id) if self.open_branch_id is not None else "",
             str(round(self.avail_balance, 2)) if self.avail_balance is not None else "",
-            str(round(self.pending_balance, 2)) if self.pending_balance is not None else "",
+            str(round(self.pending_balance, 2))
+            if self.pending_balance is not None
+            else "",
         )

@@ -1,3 +1,15 @@
+/*
+Example MySQL table schema and data
+------------------------------------------
+You must disable SQL_SAFE_UPDATES in MySQL
+------------------------------------------
+
+Title: Learning SQL
+Author: Alan Beaulieu
+Publisher: O'Reilly Media
+ISBN: 9780596007270
+*/
+
 /* begin table creation */
 
 create table department

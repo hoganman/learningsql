@@ -50,13 +50,9 @@ class Account(Base):
         ForeignKey("branch.branch_id"), nullable=True
     )
 
-    avail_balance: Mapped[Optional[float]] = mapped_column(
-        Float(precision=10), nullable=True
-    )
+    avail_balance: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
 
-    pending_balance: Mapped[Optional[float]] = mapped_column(
-        Float(precision=10), nullable=True
-    )
+    pending_balance: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
 
     def __repr__(self) -> str:
         return (

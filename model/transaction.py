@@ -32,7 +32,7 @@ class Transaction(Base):
 
     txn_type_cd: Mapped[str] = mapped_column(Enum(TransactionTypeEnum), nullable=True)
 
-    amount: Mapped[float] = mapped_column(Double(10), nullable=False)
+    amount: Mapped[float] = mapped_column(Double, nullable=False)
 
     teller_emp_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("employee.emp_id"), nullable=True

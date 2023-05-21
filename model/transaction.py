@@ -19,7 +19,7 @@ class TransactionTypeEnum(enum.Enum):
 class Transaction(Base):
     """A transaction with the bank"""
 
-    __tablename__: Final[str] = "transactions"
+    __tablename__: Final[str] = "transaction"
 
     txn_id: Mapped[int] = mapped_column(primary_key=True)
 

@@ -11,8 +11,8 @@ from .base import Base
 class CustomerTypeEnum(enum.Enum):
     """Customer type as either individual 'I' or business 'B'"""
 
-    individual = "I"
-    business = "B"
+    I = "I"
+    B = "B"
 
 
 class Customer(Base):

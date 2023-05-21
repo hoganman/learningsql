@@ -12,8 +12,8 @@ from .base import Base
 class TransactionTypeEnum(enum.Enum):
     """Transaction type as either credit 'CDT' or debit 'DBT'"""
 
-    credit = "CDT"
-    debit = "DBT"
+    CDT = "CDT"
+    DBT = "DBT"
 
 
 class Transaction(Base):

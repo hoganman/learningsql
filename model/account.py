@@ -11,9 +11,9 @@ from .base import Base
 
 
 class AccountStatusEnum(enum.Enum):
-    active = "ACTIVE"
-    closed = "CLOSED"
-    frozen = "FROZEN"
+    ACTIVE = "ACTIVE"
+    CLOSED = "CLOSED"
+    FROZEN = "FROZEN"
 
 
 class Account(Base):

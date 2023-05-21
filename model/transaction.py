@@ -45,3 +45,19 @@ class Transaction(Base):
     funds_avail_date: Mapped[Optional[datetime]] = mapped_column(
         DateTime, nullable=True
     )
+
+    def __repr__(self) -> str:
+        return (
+            "Transaction(txn_id=%d, txn_date=%s, account_id=%d, txn_type_cd=%s"
+            ", amount=%10.2f, teller_emp_id=%s, execution_branch_id=%s"
+            ", funds_avail_date=%s)"
+        ) % (
+            self.txn_id,
+            self.txn_date.isoformat(),
+            self.account_id,
+            self.txn_type_cd,
+            self.amount,
+            str(self.teller_emp_id) if self.teller_emp_id is not None else "",
+            str(self.execution_branch_id) if self.execution_branch_id is not None else "",
+            self.funds_avail_date.isoformat() if self.funds_avail_date is not None else ""
+        )

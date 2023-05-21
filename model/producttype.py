@@ -16,3 +16,9 @@ class ProductType(Base):
     product_type_cd: Mapped[str] = mapped_column(String(10), primary_key=True)
 
     name: Mapped[str] = mapped_column(String(50), nullable=False)
+
+    def __repr__(self) -> str:
+        return "ProductType(product_type_cd=%s, name=%s)" % (
+            self.product_type_cd,
+            self.name
+        )

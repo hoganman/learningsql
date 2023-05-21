@@ -37,3 +37,17 @@ class Customer(Base):
 
     postal_code: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
     """postal code of the branch, nullable"""
+
+    def __repr__(self) -> str:
+        return (
+            "Customer(cust_id=%d, fed_id=%s, cust_type_cd=%s, address=%s"
+            ", city=%s, state=%s, postal_code=%s)"
+        ) % (
+            self.cust_id,
+            self.fed_id,
+            self.cust_type_cd,
+            self.address if self.address is not None else "",
+            self.city if self.city is not None else "",
+            self.state if self.state is not None else "",
+            self.postal_code if self.postal_code is not None else "",
+        )

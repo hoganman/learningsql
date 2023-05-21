@@ -26,3 +26,15 @@ class Product(Base):
 
     date_retired: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
     """Retiring date of the product, nullable"""
+
+    def __repr__(self) -> str:
+        return (
+            "Product(product_cd=%s, name=%s, product_type_cd=%s"
+            ", date_offered=%s, date_retired=%s)"
+        ) % (
+            self.product_cd,
+            self.name,
+            self.product_type_cd,
+            self.date_offered.isoformat() if self.date_offered is not None else "",
+            self.date_retired.isoformat() if self.date_retired is not None else ""
+        )

@@ -30,7 +30,7 @@ class Transaction(Base):
         ForeignKey("account.account_id"), nullable=False
     )
 
-    txn_type_cd: Mapped[str] = mapped_column(Enum(TransactionTypeEnum), nullable=True)
+    txn_type_cd: Mapped[TransactionTypeEnum] = mapped_column(Enum(TransactionTypeEnum), nullable=True)
 
     amount: Mapped[float] = mapped_column(Double, nullable=False)
 
@@ -55,7 +55,7 @@ class Transaction(Base):
             self.txn_id,
             self.txn_date.isoformat(),
             self.account_id,
-            self.txn_type_cd,
+            str(self.txn_type_cd.value),
             self.amount,
             str(self.teller_emp_id) if self.teller_emp_id is not None else "",
             str(self.execution_branch_id) if self.execution_branch_id is not None else "",

@@ -38,7 +38,7 @@ class Account(Base):
     last_activity_date: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
     """Last activity date of the account, nullable means use open date"""
 
-    status: Mapped[Optional[str]] = mapped_column(
+    status: Mapped[Optional[AccountStatusEnum]] = mapped_column(
         Enum(AccountStatusEnum), nullable=True
     )
 
@@ -68,7 +68,7 @@ class Account(Base):
             self.last_activity_date.isoformat()
             if self.last_activity_date is not None
             else "",
-            self.status if self.status is not None else "",
+            str(self.status.value) if self.status is not None else "",
             str(self.open_emp_id) if self.open_emp_id is not None else "",
             str(self.open_branch_id) if self.open_branch_id is not None else "",
             str(round(self.avail_balance, 2)) if self.avail_balance is not None else "",

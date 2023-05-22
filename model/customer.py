@@ -24,7 +24,7 @@ class Customer(Base):
 
     fed_id: Mapped[str] = mapped_column(String(12), nullable=False)
 
-    cust_type_cd: Mapped[str] = mapped_column(Enum(CustomerTypeEnum), nullable=False)
+    cust_type_cd: Mapped[CustomerTypeEnum] = mapped_column(Enum(CustomerTypeEnum), nullable=False)
 
     address: Mapped[Optional[str]] = mapped_column(String(30), nullable=True)
     """Address of the customer, nullable"""
@@ -45,7 +45,7 @@ class Customer(Base):
         ) % (
             self.cust_id,
             self.fed_id,
-            self.cust_type_cd,
+            str(self.cust_type_cd.value),
             self.address if self.address is not None else "",
             self.city if self.city is not None else "",
             self.state if self.state is not None else "",

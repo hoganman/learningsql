@@ -8,4 +8,4 @@ The example SQL database is included in this repository in `LearningSQLExample.s
 
 An ER diagram is also included below.
 
-<img src="/Users/mhogan/Documents/learningsql/erd.png" title="ER Diagram for Bank"/>
+<img src="erd.png" title="ER Diagram for Bank"/>

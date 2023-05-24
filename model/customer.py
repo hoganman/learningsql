@@ -1,9 +1,9 @@
 """A customer in the schema"""
 import enum
-from typing import Final, Optional
+from typing import Final, Optional, List
 
 from sqlalchemy import String, Enum
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -37,6 +37,10 @@ class Customer(Base):
 
     postal_code: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
     """postal code of the branch, nullable"""
+
+    customer_accounts: Mapped[List["Account"]] = relationship(
+        "Account", back_populates="account_customer"
+    )
 
     def __repr__(self) -> str:
         return (

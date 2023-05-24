@@ -5,7 +5,7 @@ from typing import Final, Optional
 
 from sqlalchemy import Date
 from sqlalchemy import Enum, ForeignKey, Float
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -53,6 +53,14 @@ class Account(Base):
     avail_balance: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
 
     pending_balance: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+
+    account_customer: Mapped["Customer"] = relationship(
+        "Customer", back_populates="customer_accounts"
+    )
+
+    account_product: Mapped["Product"] = relationship(
+        "Product", back_populates="product_accounts"
+    )
 
     def __repr__(self) -> str:
         return (

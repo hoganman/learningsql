@@ -1,9 +1,9 @@
 """A product offered by the bank"""
 from datetime import date
-from typing import Final, Optional
+from typing import Final, Optional, List
 
 from sqlalchemy import String, ForeignKey, Date
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -26,6 +26,10 @@ class Product(Base):
 
     date_retired: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
     """Retiring date of the product, nullable"""
+
+    product_accounts: Mapped[List["Account"]] = relationship(
+        "Account", back_populates="account_product"
+    )
 
     def __repr__(self) -> str:
         return (

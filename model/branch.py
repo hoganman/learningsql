@@ -1,4 +1,4 @@
-"""A department branch model"""
+"""A department branch of the bank"""
 from typing import Final, Optional, List
 
 from sqlalchemy import String
@@ -8,9 +8,10 @@ from .base import Base
 
 
 class Branch(Base):
-    """A department branch"""
+    """A department branch of the bank"""
 
     __tablename__: Final[str] = "branch"
+    """Table name for the associated object"""
 
     branch_id: Mapped[int] = mapped_column(primary_key=True)
     """Branch ID, primary key"""

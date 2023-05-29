@@ -1,4 +1,4 @@
-"""An account in the schema"""
+"""An account of the bank"""
 import enum
 from datetime import date
 from typing import Final, Optional
@@ -11,15 +11,23 @@ from .base import Base
 
 
 class AccountStatusEnum(enum.Enum):
+    """Account status values"""
+
     ACTIVE = "ACTIVE"
+    """Account is open and active"""
+
     CLOSED = "CLOSED"
+    """Account is closed and inactive"""
+
     FROZEN = "FROZEN"
+    """Account has been frozen due to something"""
 
 
 class Account(Base):
-    """A customer in the schema"""
+    """An account of the bank, held by a single customer"""
 
     __tablename__: Final[str] = "account"
+    """Table name for the associated object"""
 
     account_id: Mapped[int] = mapped_column(primary_key=True)
     """Account ID, primary key"""

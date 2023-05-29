@@ -1,4 +1,4 @@
-"""An employee in a department model"""
+"""An employee of the bank"""
 from datetime import date
 from typing import Final, Optional, List
 
@@ -9,9 +9,10 @@ from .base import Base
 
 
 class Employee(Base):
-    """An employee of the company"""
+    """An employee of the bank"""
 
     __tablename__: Final[str] = "employee"
+    """Table name for the associated object"""
 
     emp_id: Mapped[int] = mapped_column(primary_key=True)
     """Employee ID, primary key"""

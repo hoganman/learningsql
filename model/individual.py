@@ -1,4 +1,4 @@
-"""An employee in a department model"""
+"""An individual customer of the bank"""
 from datetime import date
 from typing import Final, Optional, List
 
@@ -9,9 +9,10 @@ from .base import Base
 
 
 class Individual(Base):
-    """An individual customer"""
+    """An individual customer of the bank"""
 
     __tablename__: Final[str] = "individual"
+    """Table name for the associated object"""
 
     cust_id: Mapped[int] = mapped_column(
         ForeignKey("customer.cust_id"), primary_key=True

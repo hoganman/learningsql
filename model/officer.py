@@ -1,6 +1,6 @@
-"""An officer in the bank"""
+"""An officer customer of the bank"""
 from datetime import date
-from typing import Final, Optional, List
+from typing import Final, Optional
 
 from sqlalchemy import String, Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -9,22 +9,10 @@ from .base import Base
 
 
 class Officer(Base):
-    """An officer in the bank
-       create table officer
-    (officer_id smallint unsigned not null auto_increment,
-     cust_id integer unsigned not null,
-     fname varchar(30) not null,
-     lname varchar(30) not null,
-     title varchar(20),
-     start_date date not null,
-     end_date date,
-     constraint fk_o_cust_id foreign key (cust_id)
-       references business (cust_id),
-     constraint pk_officer primary key (officer_id)
-    );
-    """
+    """An officer customer of the bank"""
 
     __tablename__: Final[str] = "officer"
+    """Table name for the associated object"""
 
     officer_id: Mapped[int] = mapped_column(primary_key=True)
     """Officer ID, primary key"""
@@ -46,6 +34,10 @@ class Officer(Base):
 
     end_date: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
     """End date of the employee, nullable if still employed"""
+
+    officer_customer: Mapped["Customer"] = relationship(
+        "Customer", back_populates="customer_officer"
+    )
 
     def __repr__(self) -> str:
         return (

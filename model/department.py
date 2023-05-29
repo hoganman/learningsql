@@ -1,4 +1,4 @@
-"""A department consisting with a name"""
+"""A bank department consisting with a name"""
 from typing import Final, List
 
 from sqlalchemy import String
@@ -8,9 +8,10 @@ from .base import Base
 
 
 class Department(Base):
-    """A department with a name"""
+    """A bank department consisting with a name"""
 
     __tablename__: Final[str] = "department"
+    """Table name for the associated object"""
 
     dept_id: Mapped[int] = mapped_column(primary_key=True)
     """Department ID, primary key"""

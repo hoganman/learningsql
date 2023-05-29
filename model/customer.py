@@ -1,4 +1,4 @@
-"""A customer in the schema"""
+"""A generalized customer of the bank, either an individual or business"""
 import enum
 from typing import Final, Optional, List
 
@@ -12,19 +12,28 @@ class CustomerTypeEnum(enum.Enum):
     """Customer type as either individual 'I' or business 'B'"""
 
     I = "I"
+    """Individual customer of the bank"""
+
     B = "B"
+    """Business customer of the bank"""
 
 
 class Customer(Base):
-    """A customer in the schema"""
+    """A generalized customer of the bank, either an individual or business"""
 
     __tablename__: Final[str] = "customer"
+    """Table name for the associated object"""
 
     cust_id: Mapped[int] = mapped_column(primary_key=True)
+    """Customer ID, primary key"""
 
     fed_id: Mapped[str] = mapped_column(String(12), nullable=False)
+    """Federal ID of the customer, nullable if not available"""
 
-    cust_type_cd: Mapped[CustomerTypeEnum] = mapped_column(Enum(CustomerTypeEnum), nullable=False)
+    cust_type_cd: Mapped[CustomerTypeEnum] = mapped_column(
+        Enum(CustomerTypeEnum), nullable=False
+    )
+    """Customer type code, individual or business, non-nullable"""
 
     address: Mapped[Optional[str]] = mapped_column(String(30), nullable=True)
     """Address of the customer, nullable"""
@@ -41,6 +50,12 @@ class Customer(Base):
     customer_accounts: Mapped[List["Account"]] = relationship(
         "Account", back_populates="account_customer"
     )
+    """Pointer to a list of all the Accounts held by the customer"""
+
+    customer_officer: Mapped[Optional["Officer"]] = relationship(
+        "Officer", back_populates="officer_customer"
+    )
+    """Pointer to an officer, if exists. Else none"""
 
     def __repr__(self) -> str:
         return (

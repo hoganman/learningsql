@@ -62,6 +62,11 @@ class Employee(Base):
     )
     """Relationship that accesses the assigned branch of the employee"""
 
+    employee_transactions: Mapped[List["Transaction"]] = relationship(
+        "Transaction", back_populates="transaction_teller"
+    )
+    """Pointer to a list of all teller transactions performed by the employee"""
+
     def __repr__(self) -> str:
         return (
             "Employee(emp_id=%d, fname=%s, lname=%s, start_date=%s, end_date=%s, superior_emp_id=%s, dept_id=%s,"

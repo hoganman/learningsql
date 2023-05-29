@@ -1,7 +1,7 @@
 """An account of the bank"""
 import enum
 from datetime import date
-from typing import Final, Optional
+from typing import Final, Optional, List
 
 from sqlalchemy import Date
 from sqlalchemy import Enum, ForeignKey, Float
@@ -79,6 +79,11 @@ class Account(Base):
         "Product", back_populates="product_accounts"
     )
     """A pointer to the account's Product"""
+
+    account_transactions: Mapped[List["Transaction"]] = relationship(
+        "Transaction", back_populates="transaction_account"
+    )
+    """Pointer to a list of all transactions associated with the account"""
 
     def __repr__(self) -> str:
         return (

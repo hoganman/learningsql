@@ -3,8 +3,8 @@ import enum
 from datetime import datetime
 from typing import Final, Optional
 
-from sqlalchemy import String, Enum, DateTime, ForeignKey, Double
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Enum, DateTime, ForeignKey, Double
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -58,6 +58,21 @@ class Transaction(Base):
         DateTime, nullable=True
     )
     """Date when funds are available, nullable if transaction does not apply"""
+
+    transaction_account: Mapped["Account"] = relationship(
+        "Account", back_populates="account_transactions"
+    )
+    """Pointer to the account associated with the transaction"""
+
+    transaction_teller: Mapped[Optional["Employee"]] = relationship(
+        "Employee", back_populates="employee_transactions"
+    )
+    """Pointer to the employee who completed the transaction, else None if not an employee"""
+
+    transaction_branch: Mapped[Optional["Branch"]] = relationship(
+        "Branch", back_populates="branch_transactions"
+    )
+    """Pointer to the branch that executed the transaction, else None if not at a branch"""
 
     def __repr__(self) -> str:
         return (

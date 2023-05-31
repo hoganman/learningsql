@@ -41,6 +41,11 @@ class Branch(Base):
     )
     """Pointer to a list of all transactions executed at the branch"""
 
+    branch_open_accounts: Mapped[List["Account"]] = relationship(
+        "Account", back_populates="account_open_branch"
+    )
+    """Pointer to a list of accounts opened at this branch"""
+
     def __repr__(self) -> str:
         return (
             "Branch(branch_id=%d, name=%s, address=%s, city=%s, state=%s, zip=%s)"
